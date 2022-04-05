@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     [SerializeField] private GameObject model;
     public Vector3 movement;
-
+    private int lifePoints = 10;
     private float speed = 10.0f; // The speed of the player
 
     // Start is called before the first frame update

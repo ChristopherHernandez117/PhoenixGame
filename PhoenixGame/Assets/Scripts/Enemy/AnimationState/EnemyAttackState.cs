@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyChaseState : StateMachineBehaviour
+public class EnemyAttackState : StateMachineBehaviour
 {
     private Enemy enemy;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -14,12 +14,10 @@ public class EnemyChaseState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        enemy.agent.SetDestination(enemy.Player.transform.position);
         enemy.transform.LookAt(enemy.Player.transform);
-
-        if (enemy.GetDistanceFromPlayer() < enemy.AttackRange)
+        if (enemy.GetDistanceFromPlayer() > enemy.AttackRange)
         {
-            animator.SetBool("IsAttacking", true);
+            animator.SetBool("IsAttacking", false);
         }
     }
 
