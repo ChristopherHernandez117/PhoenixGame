@@ -19,11 +19,7 @@ public class PlayerRunningState : StateMachineBehaviour
         {
             animator.SetBool("IsRunning", false);
         }
-        else if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            animator.SetLayerWeight(animator.GetLayerIndex("Attack Layer"), 1);
-            animator.SetTrigger("Attack");
-        }
+        
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

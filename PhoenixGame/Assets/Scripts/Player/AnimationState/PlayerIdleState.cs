@@ -19,9 +19,7 @@ public class PlayerIdleState : StateMachineBehaviour
         {
             animator.SetBool("IsRunning", true);
         } 
-        else if (Input.GetKeyDown(KeyCode.Mouse0)) {
-            animator.SetTrigger("Attack");
-        }
+        
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

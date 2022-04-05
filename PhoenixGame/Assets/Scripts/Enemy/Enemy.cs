@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
         if(other.gameObject.tag == "Sword")
         {
             lifePoints--;
-            Debug.Log("Life points:" + lifePoints);
+            Debug.Log("Enemy Life points:" + lifePoints);
         }
         if(lifePoints <= 0)
         {
