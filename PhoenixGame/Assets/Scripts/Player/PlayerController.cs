@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
-    private Animator anim;
+    private Animator animator;
     [SerializeField] private GameObject model;
+    public Vector3 movement;
 
     private float speed = 10.0f; // The speed of the player
 
@@ -14,14 +15,13 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
         // Determine XZ movement
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         // Ensure diagonal movement doesn't exceed horiz/vert movement speed
         movement = Vector3.ClampMagnitude(movement, 1.0f);
 
@@ -29,14 +29,7 @@ public class PlayerController : MonoBehaviour
         {
             RotateModelToFaceMovement(movement);
         }
-        // Sets "IsRunning" to true if we the player is moving, otherwise sets to false
-        if (movement.magnitude > 0.1)
-        {
-            anim.SetBool("IsRunning", true);
-        } else
-        {
-            anim.SetBool("IsRunning", false);
-        }
+
         // Determine XZ movement speed
         movement *= speed;
         // Move the player (via the CharacterController)
