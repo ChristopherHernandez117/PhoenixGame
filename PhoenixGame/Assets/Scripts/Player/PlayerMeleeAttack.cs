@@ -16,7 +16,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            animator.SetTrigger("Attack");
+            animator.SetTrigger("Attack");    
         }
     }
 }

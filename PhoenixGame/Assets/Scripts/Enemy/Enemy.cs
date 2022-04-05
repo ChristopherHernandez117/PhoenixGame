@@ -16,15 +16,7 @@ public class Enemy : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Sword")
-        {
-            lifePoints--;
-            Debug.Log("Enemy Life points:" + lifePoints);
-        }
-        if(lifePoints <= 0)
-        {
-            //Destroy(this.gameObject);
-        }
+        
     }
     public float GetDistanceFromPlayer()
     {
@@ -32,11 +24,13 @@ public class Enemy : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
+        /*
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, ChaseRange);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, AttackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, AttackRange - 1.5f);
+        */
     }
 }
