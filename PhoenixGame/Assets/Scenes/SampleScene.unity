@@ -793,6 +793,20 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 2066896392038628118, guid: 45288819fde2143449a96207b14db0bb, type: 3}
   m_PrefabInstance: {fileID: 1087962615}
   m_PrefabAsset: {fileID: 0}
+--- !u!136 &2068753791
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068753790}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.42
+  m_Height: 1.38
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.72, z: 0}
 --- !u!114 &2068753795
 MonoBehaviour:
   m_ObjectHideFlags: 0

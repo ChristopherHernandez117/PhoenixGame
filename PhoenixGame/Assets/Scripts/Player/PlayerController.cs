@@ -7,8 +7,9 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     [SerializeField] private GameObject model;
     public Vector3 movement;
-    private int lifePoints = 10;
+    public int lifePoints = 10; // The life points of the player
     private float speed = 10.0f; // The speed of the player
+    public bool canTakeDamage = true;
 
     // Start is called before the first frame update
     void Start()
@@ -19,18 +20,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerMovement();
+        PlayerMovement();
 
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
-        {
-            lifePoints--;
-            Debug.Log("Player Life points:" + lifePoints);
-        }
+       
     }
-    private void playerMovement()
+    private void PlayerMovement()
     {
         // Determine XZ movement
         movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -52,4 +49,25 @@ public class PlayerController : MonoBehaviour
         Quaternion newRotation = Quaternion.LookRotation(new Vector3(moveDirection.x, 0f, moveDirection.z));
         model.transform.rotation = Quaternion.Slerp(model.transform.rotation, newRotation, Time.deltaTime * 25);
     }
+
+    public void tookDamage()
+    {
+        // if not available to use (still cooling down) just exit
+        if (!canTakeDamage) return;
+        canTakeDamage = false;
+        //Debug.Log("CANNOT take damage");
+        StartCoroutine(tookDamageCountdown(4));
+    }
+    private IEnumerator tookDamageCountdown(int cooldownDuration)
+    {
+        int counter = cooldownDuration;
+        while (counter > 0)
+        {
+            yield return new WaitForSeconds(0.1f);
+            counter--;
+        }
+        canTakeDamage = true;
+        //Debug.Log("Can take damage");
+    }
+
 }

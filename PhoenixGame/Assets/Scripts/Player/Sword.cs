@@ -6,6 +6,7 @@ public class Sword : MonoBehaviour
 {
     public bool isAvailable;
     private bool inUse;
+    private int swordDamage = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,9 +29,9 @@ public class Sword : MonoBehaviour
         // Code goes here
         inUse = true;
         isAvailable = false;
-        Debug.Log("In use");
+        //Debug.Log("In use");
         // start the cooldown timer
-        StartCoroutine(Countdown(6));
+        StartCoroutine(SwordCountdown(6));
     }
     void OnTriggerEnter(Collider other)
     {
@@ -39,12 +40,17 @@ public class Sword : MonoBehaviour
             if(inUse)
             {
                 Enemy enemy = other.gameObject.GetComponentInParent<Enemy>();
-                enemy.lifePoints--;
-                Debug.Log("Hit with sword: " + enemy.lifePoints);
+                if (enemy.canTakeDamage)
+                {
+                    enemy.tookDamage();
+                    enemy.gotHit();
+                    enemy.lifePoints -= swordDamage;
+                    Debug.Log("Hit with sword: " + enemy.lifePoints);
+                }
             }
         }
     }
-    private IEnumerator Countdown(int cooldownDuration)
+    private IEnumerator SwordCountdown(int cooldownDuration)
     {
         int counter = cooldownDuration;
         while (counter > 0)
@@ -54,7 +60,7 @@ public class Sword : MonoBehaviour
         }
         inUse = false;
         isAvailable = true;
-        Debug.Log("Not in use");
+        //Debug.Log("Not in use");
     }
 
 }

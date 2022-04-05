@@ -1227,6 +1227,8 @@ GameObject:
   - component: {fileID: 1664457606}
   - component: {fileID: 1664457605}
   - component: {fileID: 1837748427}
+  - component: {fileID: 2068753791}
+  - component: {fileID: 2068753795}
   m_Layer: 0
   m_Name: DogPolyart
   m_TagString: Player
@@ -1301,6 +1303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 2066896392038628118}
   movement: {x: 0, y: 0, z: 0}
+  lifePoints: 10
 --- !u!54 &1837748427
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1317,6 +1320,32 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!136 &2068753791
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066896392038628118}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.42
+  m_Height: 1.38
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.72, z: 0}
+--- !u!114 &2068753795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066896392038628118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf3080fa3bddbbc48b2d1c43ebe956cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2066896392038628120
 GameObject:
   m_ObjectHideFlags: 0
@@ -2494,14 +2523,14 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 421140039854e8c42938a8cb73d3480c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b96201848d117da4ca7dc3ade4bd59de, type: 3}
---- !u!1 &3951229398020017800 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: b96201848d117da4ca7dc3ade4bd59de, type: 3}
-  m_PrefabInstance: {fileID: 3951229398020114472}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3951229398020510376 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: b96201848d117da4ca7dc3ade4bd59de, type: 3}
+  m_PrefabInstance: {fileID: 3951229398020114472}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3951229398020017800 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: b96201848d117da4ca7dc3ade4bd59de, type: 3}
   m_PrefabInstance: {fileID: 3951229398020114472}
   m_PrefabAsset: {fileID: 0}
 --- !u!54 &2107416864
@@ -2533,3 +2562,16 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.38924336, y: 1.3304198, z: 0.17}
   m_Center: {x: 0.00000013475967, y: -0.49534142, z: 0.00000029825392}
+--- !u!114 &900316674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3951229398020017800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7dbe5eebb6fc814a86a3c920dd28b04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isAvailable: 0
