@@ -18,7 +18,8 @@ public class PlayerIdleState : StateMachineBehaviour
         if (playerController.movement.magnitude > 0.1)
         {
             animator.SetBool("IsRunning", true);
-        } else if (Input.GetKeyDown(KeyCode.Mouse0)) {
+        } 
+        else if (Input.GetKeyDown(KeyCode.Mouse0)) {
             animator.SetTrigger("Attack");
         }
     }

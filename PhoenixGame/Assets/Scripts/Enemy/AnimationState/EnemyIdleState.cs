@@ -17,6 +17,9 @@ public class EnemyIdleState : StateMachineBehaviour
         if (enemy.GetDistanceFromPlayer() < enemy.ChaseRange)
         {
             animator.SetBool("IsChasing", true);
+        } else if (enemy.lifePoints <= 0)
+        {
+            animator.SetBool("IsDead", true);
         }
     }
 

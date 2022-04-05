@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
-    private Animator animator;
     [SerializeField] private GameObject model;
     public Vector3 movement;
     private int lifePoints = 10;
@@ -19,6 +18,19 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        playerMovement();
+
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            lifePoints--;
+            Debug.Log("Player Life points:" + lifePoints);
+        }
+    }
+    private void playerMovement()
     {
         // Determine XZ movement
         movement = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
