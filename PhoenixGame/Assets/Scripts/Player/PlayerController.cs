@@ -9,7 +9,9 @@ public class PlayerController : MonoBehaviour
     public Vector3 movement;
     public int lifePoints = 10; // The life points of the player
     private float speed = 10.0f; // The speed of the player
+    private float speedWhenDefending = 3.0f;
     public bool canTakeDamage = true;
+    public bool isDefending = false;
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +42,14 @@ public class PlayerController : MonoBehaviour
         }
 
         // Determine XZ movement speed
-        movement *= speed;
+        if (isDefending)
+        {
+            movement *= speedWhenDefending;
+        }
+        else
+        {
+            movement *= speed;
+        }
         // Move the player (via the CharacterController)
         controller.Move(movement * Time.deltaTime);
     }

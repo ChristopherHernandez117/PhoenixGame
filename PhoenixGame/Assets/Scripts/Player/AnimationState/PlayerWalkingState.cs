@@ -19,7 +19,7 @@ public class PlayerWalkingState : StateMachineBehaviour
         {
             animator.SetBool("IsWalking", false);
         }
-        else if (playerController.movement.magnitude > 3)
+        else if (playerController.movement.magnitude > 2)
         {
             animator.SetBool("IsRunning", true);
         }

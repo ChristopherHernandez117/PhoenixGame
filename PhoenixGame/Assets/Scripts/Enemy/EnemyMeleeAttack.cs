@@ -17,7 +17,7 @@ public class EnemyMeleeAttack : MonoBehaviour
             if (other.gameObject.tag == "Player")
             {
                 PlayerController player = other.gameObject.GetComponent<PlayerController>();
-                if (player.canTakeDamage)
+                if (player.canTakeDamage && !player.isDefending)
                 {
                     player.tookDamage();
                     player.lifePoints -= enemyMeleeDamage;
