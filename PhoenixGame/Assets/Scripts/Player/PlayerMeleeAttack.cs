@@ -11,7 +11,7 @@ public class PlayerMeleeAttack : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         playerController = animator.gameObject.GetComponentInParent<PlayerController>();
-        animator.SetLayerWeight(animator.GetLayerIndex("Attack Layer"), 1);
+        //animator.SetLayerWeight(animator.GetLayerIndex("Attack Layer"), 1);
     }
     public void Update()
     {
@@ -21,6 +21,12 @@ public class PlayerMeleeAttack : MonoBehaviour
             if (!sword.isAvailable) return;
             sword.useSword();
             animator.SetTrigger("Attack");    
+        } else if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            animator.SetBool("IsDefending", true);
+        }
+        if (Input.GetKeyUp(KeyCode.Mouse1)) {
+            animator.SetBool("IsDefending", false);
         }
     }
 }
