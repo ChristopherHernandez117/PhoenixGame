@@ -1304,6 +1304,7 @@ MonoBehaviour:
   model: {fileID: 2066896392038628118}
   movement: {x: 0, y: 0, z: 0}
   lifePoints: 10
+  canTakeDamage: 1
 --- !u!54 &1837748427
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1346,6 +1347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf3080fa3bddbbc48b2d1c43ebe956cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sword: {fileID: 900316674}
 --- !u!1 &2066896392038628120
 GameObject:
   m_ObjectHideFlags: 0

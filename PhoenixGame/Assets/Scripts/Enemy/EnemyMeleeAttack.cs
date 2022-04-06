@@ -4,21 +4,32 @@ using UnityEngine;
 
 public class EnemyMeleeAttack : MonoBehaviour
 {
+    public bool isAvailable;
+    private bool inUse;
     private int enemyMeleeDamage = 1;
+    private Enemy enemy;
+    private void Start()
+    {
+        enemy = GetComponentInParent<Enemy>();
+    }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (enemy.alive)
         {
-            PlayerController player = other.gameObject.GetComponent<PlayerController>();
-            if (player.canTakeDamage)
+            if (other.gameObject.tag == "Player")
             {
-                player.tookDamage();
-                player.lifePoints -= enemyMeleeDamage;
-                Debug.Log("Player Life points:" + player.lifePoints);
+                PlayerController player = other.gameObject.GetComponent<PlayerController>();
+                useAttack();
+                if (player.canTakeDamage)
+                {
+                    player.tookDamage();
+                    player.lifePoints -= enemyMeleeDamage;
+                    Debug.Log("Player Life points:" + player.lifePoints);
+                }
             }
         }
     }
-    /*
+    
     private void useAttack()
     {
         // if not available to use (still cooling down) just exit
@@ -26,8 +37,18 @@ public class EnemyMeleeAttack : MonoBehaviour
         // Code goes here
         inUse = true;
         isAvailable = false;
-        //Debug.Log("In use");
         // start the cooldown timer
-        StartCoroutine(SwordCountdown(6));
-    }*/
+        StartCoroutine(EnemyAttackCountDown(4));
+    }
+    private IEnumerator EnemyAttackCountDown(int cooldownDuration)
+    {
+        int counter = cooldownDuration;
+        while (counter > 0)
+        {
+            yield return new WaitForSeconds(0.1f);
+            counter--;
+        }
+        inUse = false;
+        isAvailable = true;
+    }
 }

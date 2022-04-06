@@ -21,10 +21,6 @@ public class EnemyAttackState : StateMachineBehaviour
             animator.SetBool("IsAttacking", false);
 
         } 
-        if (enemy.lifePoints <= 0)
-        {
-            animator.SetBool("IsDead", true);
-        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state

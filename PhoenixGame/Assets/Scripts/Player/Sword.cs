@@ -35,6 +35,8 @@ public class Sword : MonoBehaviour
                     enemy.gotHit();
                     enemy.lifePoints -= swordDamage;
                     Debug.Log("Hit with sword: " + enemy.lifePoints);
+
+                    enemy.GetComponentInChildren<Rigidbody>().AddForce(new Vector3(0, 0, 1000000));
                 }
             }
         }

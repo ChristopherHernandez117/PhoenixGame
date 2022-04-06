@@ -12,12 +12,21 @@ public class Enemy : MonoBehaviour
     public float AttackRange { get; private set; } = 4f;
     public int lifePoints = 5;
     public bool canTakeDamage = true;
+    public bool alive = true;
     private void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
         animator = GetComponent<Animator>();
     }
-    
+    private void Update()
+    {
+        if (lifePoints <= 0)
+        {
+            animator.SetBool("IsDead", true);
+            alive = false;
+        }
+    }
+
     public float GetDistanceFromPlayer()
     {
         return Vector3.Distance(transform.position, Player.transform.position);

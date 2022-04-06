@@ -20,10 +20,7 @@ public class EnemyChaseState : StateMachineBehaviour
         if (enemy.GetDistanceFromPlayer() < enemy.AttackRange)
         {
             animator.SetBool("IsAttacking", true);
-        } else if (enemy.lifePoints <= 0)
-        {
-            animator.SetBool("IsDead", true);
-        }
+        } 
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
