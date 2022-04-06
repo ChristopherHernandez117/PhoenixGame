@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMeleeAttack : MonoBehaviour
 {
     private PlayerController playerController;
+    [SerializeField] private Sword sword;
     private Animator animator;
     public void Start()
     {
@@ -16,6 +17,9 @@ public class PlayerMeleeAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            // if not available to use (still cooling down) just exit
+            if (!sword.isAvailable) return;
+            sword.useSword();
             animator.SetTrigger("Attack");    
         }
     }

@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] public NavMeshAgent agent;
     private Animator animator;
     public float ChaseRange { get; private set; } = 10.0f;
-    public float AttackRange { get; private set; } = 3.7f;
+    public float AttackRange { get; private set; } = 4f;
     public int lifePoints = 5;
     public bool canTakeDamage = true;
     private void Start()

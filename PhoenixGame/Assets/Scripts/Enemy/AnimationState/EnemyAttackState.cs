@@ -15,9 +15,11 @@ public class EnemyAttackState : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         enemy.transform.LookAt(enemy.Player.transform);
+
         if (enemy.GetDistanceFromPlayer() > enemy.AttackRange - 1.2f)
         {
             animator.SetBool("IsAttacking", false);
+
         } 
         if (enemy.lifePoints <= 0)
         {

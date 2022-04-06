@@ -12,24 +12,13 @@ public class Sword : MonoBehaviour
     {
         isAvailable = true;
         inUse = false;
-}
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            useSword();
-        }
     }
-    private void useSword()
+
+    public void useSword()
     {
-        // if not available to use (still cooling down) just exit
-        if (!isAvailable) return;
         // Code goes here
         inUse = true;
         isAvailable = false;
-        //Debug.Log("In use");
         // start the cooldown timer
         StartCoroutine(SwordCountdown(6));
     }
@@ -60,7 +49,6 @@ public class Sword : MonoBehaviour
         }
         inUse = false;
         isAvailable = true;
-        //Debug.Log("Not in use");
     }
 
 }
