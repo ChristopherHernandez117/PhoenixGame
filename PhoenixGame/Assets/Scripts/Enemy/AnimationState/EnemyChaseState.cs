@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyChaseState : StateMachineBehaviour
 {
     private Enemy enemy;
+    private float tauntTime = 6;
+    private float untilTauntCounter = 0;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -20,8 +22,16 @@ public class EnemyChaseState : StateMachineBehaviour
         if (enemy.GetDistanceFromPlayer() < enemy.AttackRange)
         {
             animator.SetBool("IsAttacking", true);
-        } 
+        }
+        untilTauntCounter += Time.deltaTime * 1;
+        if (untilTauntCounter >= tauntTime)
+        {
+            animator.SetTrigger("MakingFun");
+            untilTauntCounter = 0;
+        }
     }
+
+
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

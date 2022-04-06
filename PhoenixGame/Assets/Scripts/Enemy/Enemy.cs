@@ -36,7 +36,7 @@ public class Enemy : MonoBehaviour
         // if not available to use (still cooling down) just exit
         if (!canTakeDamage) return;
         canTakeDamage = false;
-        Debug.Log("Enemy CANNOT take damage");
+        //Debug.Log("Enemy CANNOT take damage");
         StartCoroutine(tookDamageCountdown(3));
     }
     public void gotHit()
@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
             counter--;
         }
         canTakeDamage = true;
-        Debug.Log("Can take damage");
+        //Debug.Log("Can take damage");
     }
     private void OnDrawGizmos()
     {

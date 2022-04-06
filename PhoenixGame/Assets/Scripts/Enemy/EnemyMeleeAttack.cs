@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class EnemyMeleeAttack : MonoBehaviour
 {
-    public bool isAvailable;
-    private bool inUse;
+    public bool isAvailable = true;
+    private bool inUse = false;
     private int enemyMeleeDamage = 1;
     private Enemy enemy;
     private void Start()
@@ -18,8 +18,8 @@ public class EnemyMeleeAttack : MonoBehaviour
         {
             if (other.gameObject.tag == "Player")
             {
-                PlayerController player = other.gameObject.GetComponent<PlayerController>();
                 useAttack();
+                PlayerController player = other.gameObject.GetComponent<PlayerController>();
                 if (player.canTakeDamage)
                 {
                     player.tookDamage();

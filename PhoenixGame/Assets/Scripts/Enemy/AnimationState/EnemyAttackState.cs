@@ -19,7 +19,6 @@ public class EnemyAttackState : StateMachineBehaviour
         if (enemy.GetDistanceFromPlayer() > enemy.AttackRange - 1.2f)
         {
             animator.SetBool("IsAttacking", false);
-
         } 
     }
 

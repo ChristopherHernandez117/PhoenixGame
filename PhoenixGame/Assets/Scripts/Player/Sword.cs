@@ -24,11 +24,11 @@ public class Sword : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Enemy")
+        if (other.gameObject.tag == "Enemy" && inUse)
         {
-            if(inUse)
+            Enemy enemy = other.gameObject.GetComponentInParent<Enemy>();
+            if (enemy.alive)
             {
-                Enemy enemy = other.gameObject.GetComponentInParent<Enemy>();
                 if (enemy.canTakeDamage)
                 {
                     enemy.tookDamage();
@@ -36,7 +36,7 @@ public class Sword : MonoBehaviour
                     enemy.lifePoints -= swordDamage;
                     Debug.Log("Hit with sword: " + enemy.lifePoints);
 
-                    enemy.GetComponentInChildren<Rigidbody>().AddForce(new Vector3(0, 0, 1000000));
+                    enemy.gameObject.GetComponentInChildren<Rigidbody>().AddForce(new Vector3(0, 0, 1000000));
                 }
             }
         }
