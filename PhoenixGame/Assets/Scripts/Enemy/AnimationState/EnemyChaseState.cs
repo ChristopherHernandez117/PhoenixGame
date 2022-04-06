@@ -22,6 +22,7 @@ public class EnemyChaseState : StateMachineBehaviour
         if (enemy.GetDistanceFromPlayer() < enemy.AttackRange)
         {
             animator.SetBool("IsAttacking", true);
+            untilTauntCounter = 0;
         }
         untilTauntCounter += Time.deltaTime * 1;
         if (untilTauntCounter >= tauntTime)

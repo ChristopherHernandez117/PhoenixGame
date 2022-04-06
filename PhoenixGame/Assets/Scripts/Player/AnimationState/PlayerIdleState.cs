@@ -17,7 +17,7 @@ public class PlayerIdleState : StateMachineBehaviour
         // Sets "IsRunning" to true if we the player is moving
         if (playerController.movement.magnitude > 0.1)
         {
-            animator.SetBool("IsRunning", true);
+            animator.SetBool("IsWalking", true);
         } 
         
     }
