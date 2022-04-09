@@ -16,9 +16,10 @@ public class EnemyChaseState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        enemy.agent.SetDestination(enemy.Player.transform.position);
-        enemy.transform.LookAt(enemy.Player.transform);
-
+        if (enemy.alive)
+        {
+            enemy.agent.SetDestination(enemy.Player.transform.position);
+        }
         if (enemy.GetDistanceFromPlayer() < enemy.AttackRange)
         {
             animator.SetBool("IsAttacking", true);

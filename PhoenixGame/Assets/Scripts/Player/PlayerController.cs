@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
     [SerializeField] private GameObject model;
+    private Sword sword;
+    private Animator animator;
     public Vector3 movement;
     public int lifePoints = 10; // The life points of the player
     private float speed = 10.0f; // The speed of the player
@@ -17,17 +19,39 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
+        sword = GetComponentInChildren<Sword>();
     }
 
     // Update is called once per frame
     void Update()
     {
         PlayerMovement();
-
+        PlayerAttackInput();
     }
     void OnTriggerEnter(Collider other)
     {
        
+    }
+    private void PlayerAttackInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            // if not available to use (still cooling down) just exit
+            if (!sword.isAvailable) return;
+            sword.useSword();
+            animator.SetTrigger("Attack");
+        }
+        else if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            animator.SetBool("IsDefending", true);
+            isDefending = true;
+        }
+        if (Input.GetKeyUp(KeyCode.Mouse1))
+        {
+            animator.SetBool("IsDefending", false);
+            isDefending = false;
+        }
     }
     private void PlayerMovement()
     {
@@ -58,13 +82,11 @@ public class PlayerController : MonoBehaviour
         Quaternion newRotation = Quaternion.LookRotation(new Vector3(moveDirection.x, 0f, moveDirection.z));
         model.transform.rotation = Quaternion.Slerp(model.transform.rotation, newRotation, Time.deltaTime * 25);
     }
-
-    public void tookDamage()
+    public void TookDamage()
     {
         // if not available to use (still cooling down) just exit
         if (!canTakeDamage) return;
         canTakeDamage = false;
-        //Debug.Log("CANNOT take damage");
         StartCoroutine(tookDamageCountdown(4));
     }
     private IEnumerator tookDamageCountdown(int cooldownDuration)

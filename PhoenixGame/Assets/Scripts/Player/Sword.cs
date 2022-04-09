@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
-    public bool isAvailable;
+    public bool isAvailable = true;
     private bool inUse;
     private int swordDamage = 1;
     // Start is called before the first frame update
@@ -24,20 +24,19 @@ public class Sword : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
+        if(other.gameObject.tag == "Enemy2" && inUse)
+        {
+            other.GetComponent<Enemy2>().ReactToHit();
+        }
+
         if (other.gameObject.tag == "Enemy" && inUse)
         {
             Enemy enemy = other.gameObject.GetComponentInParent<Enemy>();
-            if (enemy.alive)
+            if (enemy.alive && enemy.canTakeDamage)
             {
-                if (enemy.canTakeDamage)
-                {
-                    enemy.tookDamage();
-                    enemy.gotHit();
-                    enemy.lifePoints -= swordDamage;
-                    Debug.Log("Hit with sword: " + enemy.lifePoints);
-
-                    //enemy.gameObject.GetComponentInChildren<Rigidbody>().AddForce(new Vector3(0, 0, 1000000));
-                }
+                enemy.TookDamage();
+                enemy.lifePoints -= swordDamage;
+                Debug.Log("Hit with sword: " + enemy.lifePoints);   
             }
         }
     }

@@ -14,12 +14,7 @@ public class EnemyAttackState : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        enemy.transform.LookAt(enemy.Player.transform);
-
-        if (enemy.GetDistanceFromPlayer() > enemy.AttackRange - 1.2f)
-        {
-            animator.SetBool("IsAttacking", false);
-        } 
+        animator.SetBool("IsAttacking", false);   
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
