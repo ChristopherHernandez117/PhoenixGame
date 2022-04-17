@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
+    [SerializeField] private PlayerController player; 
     public bool isAvailable = true;
     private bool inUse;
     private int swordDamage = 1;
@@ -19,6 +20,7 @@ public class Sword : MonoBehaviour
         // Code goes here
         inUse = true;
         isAvailable = false;
+        player.speed = 5;
         // start the cooldown timer
         StartCoroutine(SwordCountdown(6));
     }
@@ -34,7 +36,7 @@ public class Sword : MonoBehaviour
             Enemy enemy = other.gameObject.GetComponentInParent<Enemy>();
             if (enemy.alive && enemy.canTakeDamage)
             {
-                enemy.TookDamage();
+                enemy.HitWithSword();
                 enemy.lifePoints -= swordDamage;
                 Debug.Log("Hit with sword: " + enemy.lifePoints);   
             }
@@ -50,6 +52,7 @@ public class Sword : MonoBehaviour
         }
         inUse = false;
         isAvailable = true;
+        player.speed = 7.5f;
     }
 
 }

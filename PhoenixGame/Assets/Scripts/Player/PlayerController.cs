@@ -7,10 +7,11 @@ public class PlayerController : MonoBehaviour
     private CharacterController controller;
     [SerializeField] private GameObject model;
     private Sword sword;
+    private Shield shield;
     private Animator animator;
     public Vector3 movement;
     public int lifePoints = 10; // The life points of the player
-    private float speed = 10.0f; // The speed of the player
+    public float speed = 7.5f; // The speed of the player
     private float speedWhenDefending = 3.0f;
     public bool canTakeDamage = true;
     public bool isDefending = false;
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         sword = GetComponentInChildren<Sword>();
+        shield = GetComponentInChildren<Shield>();
     }
 
     // Update is called once per frame
@@ -46,11 +48,13 @@ public class PlayerController : MonoBehaviour
         {
             animator.SetBool("IsDefending", true);
             isDefending = true;
+            shield.inUse = true;
         }
         if (Input.GetKeyUp(KeyCode.Mouse1))
         {
             animator.SetBool("IsDefending", false);
             isDefending = false;
+            shield.inUse = false;
         }
     }
     private void PlayerMovement()

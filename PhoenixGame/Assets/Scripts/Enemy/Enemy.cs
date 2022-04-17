@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
         {
             animator.SetBool("IsDead", true);
             alive = false;
+            SetAgentInControl(false);
         }
     }
 
@@ -33,16 +34,25 @@ public class Enemy : MonoBehaviour
     {
         return Vector3.Distance(transform.position, Player.transform.position);
     }
-    public void TookDamage()
+    public void HitWithSword()
     {
         // if not available to use (still cooling down) just exit
         if (!canTakeDamage) return;
         animator.SetTrigger("GotHit");
-        ReactToHit();
+        ReactToHit(0.50f);
         canTakeDamage = false;
         StartCoroutine(tookDamageCountdown(3));
     }
-    public void ReactToHit()
+    public void HitWithShield()
+    {
+        // if not available to use (still cooling down) just exit
+        if (!canTakeDamage) return;
+        animator.SetTrigger("IsDizzy");
+        ReactToHit(0.5f);
+        canTakeDamage = false;
+        StartCoroutine(tookDamageCountdown(3));
+    }
+    public void ReactToHit(float timer)
     {
         SetAgentInControl(false);
 
@@ -53,7 +63,7 @@ public class Enemy : MonoBehaviour
         rb.AddForce(reactionV, ForceMode.Impulse);
         // rb.AddRelativeForce(Vector3.back * 2, ForceMode.Impulse);
         // rb.AddRelativeForce(Vector3.up * 2, ForceMode.Impulse);
-        StartCoroutine(ReturnControlToAgentAfterDelay(0.25f));
+        StartCoroutine(ReturnControlToAgentAfterDelay(timer));
 
     }
     private IEnumerator tookDamageCountdown(int cooldownDuration)
