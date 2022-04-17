@@ -20,7 +20,7 @@ public class Sword : MonoBehaviour
         // Code goes here
         inUse = true;
         isAvailable = false;
-        player.speed = 5;
+        player.speed = 4;
         // start the cooldown timer
         StartCoroutine(SwordCountdown(6));
     }
@@ -52,7 +52,7 @@ public class Sword : MonoBehaviour
         }
         inUse = false;
         isAvailable = true;
-        player.speed = 7.5f;
+        player.speed = 6f;
     }
 
 }

@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     public Vector3 movement;
     public int lifePoints = 10; // The life points of the player
-    public float speed = 7.5f; // The speed of the player
+    public float speed; // The speed of the player
     private float speedWhenDefending = 3.0f;
     public bool canTakeDamage = true;
     public bool isDefending = false;
@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        speed = 6f;
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         sword = GetComponentInChildren<Sword>();
