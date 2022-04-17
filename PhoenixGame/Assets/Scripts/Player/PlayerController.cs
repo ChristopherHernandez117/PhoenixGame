@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public Vector3 movement;
     public int lifePoints = 10; // The life points of the player
     public float speed; // The speed of the player
+    private float gravity = -9.8f;
+    private float yVelocity = 0f;
     private float speedWhenDefending = 3.0f;
     public bool canTakeDamage = true;
     public bool isDefending = false;
@@ -70,6 +72,15 @@ public class PlayerController : MonoBehaviour
             RotateModelToFaceMovement(movement);
         }
 
+        // add gravity
+        yVelocity += gravity * Time.deltaTime;
+
+        if (controller.isGrounded && yVelocity <= 0.0)
+        {
+            yVelocity = 0.0f;
+        }
+        movement.y = yVelocity;
+        
         // Determine XZ movement speed
         if (isDefending)
         {
