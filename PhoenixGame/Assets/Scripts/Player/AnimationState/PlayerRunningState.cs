@@ -15,7 +15,7 @@ public class PlayerRunningState : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         // Sets "IsRunning" to false if we the player is standing still
-        if (playerController.movement.magnitude < 2)
+        if (playerController.movement.magnitude < 1)
         {
             animator.SetBool("IsRunning", false);
         }
