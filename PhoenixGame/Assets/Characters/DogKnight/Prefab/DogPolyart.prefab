@@ -1306,6 +1306,8 @@ MonoBehaviour:
   speed: 7.5
   canTakeDamage: 1
   isDefending: 0
+  healthBar: {fileID: 0}
+  dogHead: {fileID: 0}
 --- !u!54 &1837748427
 Rigidbody:
   m_ObjectHideFlags: 0

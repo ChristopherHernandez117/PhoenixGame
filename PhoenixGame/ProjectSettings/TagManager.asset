@@ -8,6 +8,8 @@ TagManager:
   - Sword
   - Enemy2
   - Floor
+  - Candelabrum
+  - ChestWithKey
   layers:
   - Default
   - TransparentFX

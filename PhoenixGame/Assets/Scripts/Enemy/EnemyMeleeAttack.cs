@@ -6,6 +6,7 @@ public class EnemyMeleeAttack : MonoBehaviour
 {
     private int enemyMeleeDamage = 1;
     private Enemy enemy;
+    public HealthBarScript healthBar;
     private void Start()
     {
         enemy = GetComponentInParent<Enemy>();
@@ -21,11 +22,14 @@ public class EnemyMeleeAttack : MonoBehaviour
             if (other.gameObject.tag == "Player")
             {
                 PlayerController player = other.gameObject.GetComponent<PlayerController>();
-                if (player.canTakeDamage /*&& !player.isDefending*/)
+                Animator animator = other.gameObject.GetComponent<Animator>();
+                if (player.canTakeDamage)
                 {
+                    
+                    animator.SetTrigger("GotHit");
                     player.TookDamage();
                     player.lifePoints -= enemyMeleeDamage;
-                    Debug.Log("Player Life points:" + player.lifePoints);
+                    healthBar.SetHealth(player.lifePoints);
                 }
             }
         }

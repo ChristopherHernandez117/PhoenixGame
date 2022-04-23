@@ -38,7 +38,6 @@ public class Sword : MonoBehaviour
             {
                 enemy.HitWithSword();
                 enemy.lifePoints -= swordDamage;
-                Debug.Log("Hit with sword: " + enemy.lifePoints);   
             }
         }
     }

@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     private Animator animator;
     public float ChaseRange { get; private set; } = 10.0f;
     public float AttackRange { get; private set; } = 4f;
-    public int lifePoints = 5;
+    public int lifePoints = 4;
     public bool canTakeDamage = true;
     public bool alive = true;
     private void Start()
